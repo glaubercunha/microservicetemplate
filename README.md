@@ -1,3 +1,11 @@
-docker pull redis/redis-stack-server:7.2.0-v2
-docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:7.2.0-v2
+Para subir a aplicação no docjer execute o comando abaixo na raiz do projeto
+docker compose up
 
+
+Para alterar o código e rodar a alteração, execute os comando abaixo
+mvn clean package
+docker build -t glaubermcunha/microservicetemplate:1.0.0 .
+docker compose up
+
+Para acessar a API utilize a url abaixo
+http://localhost:8080/mensagem/v1/mensagens?salaId=2

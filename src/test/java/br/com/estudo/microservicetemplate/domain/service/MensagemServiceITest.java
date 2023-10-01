@@ -11,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.estudo.microservicetemplate.domain.entity.Mensagem;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+                , properties = {"spring.cache.type=none"})
 public class MensagemServiceITest {
     
     @Autowired

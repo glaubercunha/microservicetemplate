@@ -14,7 +14,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+                , properties = {"spring.cache.type=none"})
 public class MensagemV1RestControlerITest {
     
     private static final String MENSAGEM_V1_MENSAGENS_SALA_ID = "/mensagem/v1/mensagens?salaId=";
