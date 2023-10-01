@@ -52,7 +52,10 @@ public class MensagemV1RestControlerITest {
             createURLWithPort(MENSAGEM_V1_MENSAGENS_SALA_ID + 2),
             HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
 
-        String expected = "[{\"id\":3,\"data\":\"2023-09-29T18:12:46.242+00:00\",\"texto\":\"Oi, falou com Glauber?\",\"usuario\":{\"id\":2,\"nome\":\"João\"},\"sala\":{\"id\":2,\"nome\":null}},{\"id\":4,\"data\":\"2023-09-29T18:13:59.861+00:00\",\"texto\":\"Oi, ainda não\",\"usuario\":{\"id\":2,\"nome\":\"Maria\"},\"sala\":{\"id\":2,\"nome\":null}}]";
+        String expected = "[{\"id\":3,\"data\":\"2023-09-29T18:12:46.242+00:00\"," 
+            + "\"texto\":\"Oi, falou com Glauber?\",\"usuarioId\":2,\"usuarioNome\":\"João\","
+            + "\"salaId\":2},{\"id\":4,\"data\":\"2023-09-29T18:13:59.861+00:00\","
+            + "\"texto\":\"Oi, ainda não\",\"usuarioId\":2,\"usuarioNome\":\"Maria\",\"salaId\":2}]";
         JSONAssert.assertEquals(expected, response.getBody(), false);
     }
     private String createURLWithPort(String uri) {

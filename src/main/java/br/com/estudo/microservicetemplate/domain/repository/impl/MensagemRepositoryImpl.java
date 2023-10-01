@@ -5,11 +5,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import br.com.estudo.microservicetemplate.domain.entity.Mensagem;
-import br.com.estudo.microservicetemplate.domain.entity.Usuario;
 import br.com.estudo.microservicetemplate.domain.mapper.MensagemMapper;
 import br.com.estudo.microservicetemplate.domain.repository.MensagemRepository;
 
@@ -35,7 +33,7 @@ public class MensagemRepositoryImpl implements MensagemRepository{
             FIND_BY_SALA_ID,
             new MensagemMapper(),
             salaId);
-            
+        
         return mensagens;
     }
 }

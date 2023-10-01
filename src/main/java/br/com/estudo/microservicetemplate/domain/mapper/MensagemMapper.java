@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
 
+import br.com.estudo.microservicetemplate.domain.dto.MensagemDTO;
 import br.com.estudo.microservicetemplate.domain.entity.Mensagem;
 import br.com.estudo.microservicetemplate.domain.entity.Sala;
 import br.com.estudo.microservicetemplate.domain.entity.Usuario;
@@ -26,4 +27,16 @@ public class MensagemMapper implements RowMapper<Mensagem>{
         return mensagem;
     }
     
+    public MensagemDTO mapDTO(Mensagem mensagem){
+
+        MensagemDTO mensagemDTO = new MensagemDTO(
+            mensagem.id(),
+            mensagem.data(),
+            mensagem.texto(),
+            mensagem.usuario().id(),
+            mensagem.usuario().nome(),
+            mensagem.sala().id());
+
+        return mensagemDTO;
+    }
 }
