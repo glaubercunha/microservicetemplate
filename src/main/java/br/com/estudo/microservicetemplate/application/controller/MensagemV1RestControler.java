@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.estudo.microservicetemplate.domain.entity.Mensagem;
-import br.com.estudo.microservicetemplate.domain.entity.Usuario;
 import br.com.estudo.microservicetemplate.domain.service.MensagemService;
 
 @RestController

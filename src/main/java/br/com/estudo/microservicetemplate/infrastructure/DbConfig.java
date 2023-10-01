@@ -32,13 +32,8 @@ public class DbConfig {
 	@Bean
 	DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		
-		// driverManagerDataSource.setUrl("jdbc:postgresql://database-mensagens.cxanfineloz6.us-east-2.rds.amazonaws.com:5432/db_mensagens");
-		// driverManagerDataSource.setUsername("postgres");
-		// driverManagerDataSource.setPassword("postgres");
-		// driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
 
-        driverManagerDataSource.setUrl(url);
+		driverManagerDataSource.setUrl(url);
 		driverManagerDataSource.setUsername(userName);
 		driverManagerDataSource.setPassword(password);
 		driverManagerDataSource.setDriverClassName(driverClassName);

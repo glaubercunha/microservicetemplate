@@ -42,7 +42,6 @@ public RedisStandaloneConfiguration standaloneConfiguration() {
 
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
         redisStandaloneConfiguration.setHostName(redisHost);
-        log.info(" ######redisHost " + redisHost + " redisPort " + redisPort);
         redisStandaloneConfiguration.setPort(redisPort);
         redisStandaloneConfiguration.setDatabase(0);
         return redisStandaloneConfiguration;
