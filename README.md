@@ -1,6 +1,8 @@
 # Mincroservicetemplate
-API REST Java utilizando Spring Boot, Cache Redis e Docker.
+API REST Java utilizando Spring Boot, Cache Redis e Docker. 
+
 Infra: EC2 e RDS com Postgres
+
 IAC: Terraform e Ansible
 
 ## Para acessar a API utilize a url abaixo
