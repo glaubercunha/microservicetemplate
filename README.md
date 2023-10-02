@@ -1,5 +1,7 @@
 # Mincroservicetemplate
-API REST Java utilizando Spring Boot, Cache Redis e Docker
+API REST Java utilizando Spring Boot, Cache Redis e Docker.
+Infra: EC2 e RDS com Postgres
+IAC: Terraform e Ansible
 
 ## Para acessar a API utilize a url abaixo
 http://localhost:8080/mensagem/v1/mensagens?salaId=2
@@ -28,12 +30,12 @@ terraform plan
 terraform apply
 ```
 
-## Obter a chave do servidor criado no AWS em seguida alterar a chave para ficar acessível somente pelo criador
+## Obter a chave do servidor criado na AWS em seguida alterar a chave para ficar acessível somente pelo criador
 ```bash
 chmod 400 [NOME_CHAVE].pem
 ```
 
-## Para subir a aplicação na AWS
+## Para subir a aplicação na AWS com Ansible
 ```bash
 #Criar arquivo 'hosts' com o IP/DNS do servidor
 ansible-playbook -i hosts playbook.yml --private-key [NOME_CHAVE].pem -u ubuntu
