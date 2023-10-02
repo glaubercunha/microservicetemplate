@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import br.com.estudo.microservicetemplate.domain.mapper.MensagemMapper;
 import br.com.estudo.microservicetemplate.domain.service.MensagemService;
 
 @RestController
-@RequestMapping("/mensagem/v1")
+@RequestMapping("/api/mensagem/v1")
 public class MensagemV1RestControler {
     
   @Autowired
@@ -25,11 +26,11 @@ public class MensagemV1RestControler {
     this.service = service;
   }
     
-  @GetMapping("/mensagens")
-  @Cacheable(value = "MensagensBySalaId", key = "#salaId")
-  public List<MensagemDTO> findBySalaId(Long salaId) {
+  @GetMapping("/mensagens/{salaid}")
+  @Cacheable(value = "MensagensBySalaId", key = "#salaid")
+  public List<MensagemDTO> findBySalaId(@PathVariable("salaid") Long salaid) {
     
-    List<Mensagem> mensagens = this.service.findBySalaId(salaId);
+    List<Mensagem> mensagens = this.service.findBySalaId(salaid);
 
     List<MensagemDTO> mensagensDTO = mensagens.stream()
       .map(m -> new MensagemMapper().mapDTO(m))

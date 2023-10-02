@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
                 , properties = {"spring.cache.type=none"})
 public class MensagemV1RestControlerITest {
     
-    private static final String MENSAGEM_V1_MENSAGENS_SALA_ID = "/mensagem/v1/mensagens?salaId=";
+    private static final String MENSAGEM_V1_MENSAGENS_SALA_ID = "/api/mensagem/v1/mensagens/";
     @LocalServerPort
     private Integer port;
     private TestRestTemplate restTemplate = new TestRestTemplate();
