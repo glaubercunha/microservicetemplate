@@ -1,0 +1,39 @@
+# - hosts: terraform-ansible
+#   tasks:
+#     - name: 
+---
+- name: Instalação do Docker
+  hosts: all
+  become: true
+  tasks:
+  - name: Instalar pré-requisitos
+    ansible.builtin.apt:
+      name: ca-certificates,curl,gnupg
+      state: present
+  - name: Adicionando chave para o repositório
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present      
+  - name: Adicionando o repositório para instalar o Docker
+    ansible.builtin.apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+  - name: Instalação do Docker
+    ansible.builtin.apt:
+      name: docker-ce,docker-ce-cli,containerd.io,docker-buildx-plugin,docker-compose-plugin
+      state: present
+      update-cache: yes
+
+
+  - name: Copiar Yml(s)
+    copy:
+      src: ./{{ item }}
+      dest: ./{{ item }}
+    loop:
+    - docker-compose.yml
+
+  - name: Rodar Docker Compose Down
+    ansible.builtin.command: docker compose down
+
+  - name: Rodar Docker Compose Up
+    ansible.builtin.command: docker compose up -d
