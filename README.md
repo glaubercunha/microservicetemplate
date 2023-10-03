@@ -17,6 +17,11 @@ mvn clean package
 docker build -t glaubermcunha/microservicetemplate:1.0.0 .
 ```
 
+## upload da imagem no repositório( Caso tenha alterado o fonte)
+```bash
+docker push glaubermcunha/microservicetemplate:1.1.0
+```
+
 ## Deploy
 ```bash
 #Console
@@ -40,5 +45,5 @@ chmod 400 [NOME_CHAVE].pem
 ## Para subir a aplicação na AWS com Ansible
 ```bash
 #Criar arquivo 'hosts' com o IP/DNS do servidor
-ansible-playbook -i hosts playbook.yml --private-key [NOME_CHAVE].pem -u ubuntu
+ansible-playbook -i hosts playbook.yml --private-key iac-aws-us-east2-ed25519.pem -u ubuntu
 ```

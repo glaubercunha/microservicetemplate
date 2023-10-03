@@ -12,7 +12,7 @@ services:
     #   retries: 10
 
   spring-boot:
-    image: glaubermcunha/microservicetemplate:1.0.1
+    image: glaubermcunha/microservicetemplate:1.1.0
     depends_on:
       - redis-container
     ports:
