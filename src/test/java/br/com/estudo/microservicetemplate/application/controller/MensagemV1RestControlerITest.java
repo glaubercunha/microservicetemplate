@@ -18,11 +18,14 @@ import org.springframework.http.ResponseEntity;
                 , properties = {"spring.cache.type=none"})
 public class MensagemV1RestControlerITest {
     
-    private static final String MENSAGEM_V1_MENSAGENS_SALA_ID = "/api/mensagem/v1/mensagens/";
     @LocalServerPort
     private Integer port;
+
+    private static final String MENSAGEM_V1_MENSAGENS_SALA_ID = "/api/mensagem/v1/mensagens?salaId=";
+    private static final String MENSAGEM_V1_MENSAGENS_ID = "/api/mensagem/v1/mensagens/";
+
     private TestRestTemplate restTemplate = new TestRestTemplate();
-    HttpHeaders headers = new HttpHeaders();
+    private HttpHeaders headers = new HttpHeaders();
 
     @Test
     public void findBySalaIdHttpStatusOK() throws JSONException{
@@ -33,7 +36,6 @@ public class MensagemV1RestControlerITest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-
 
     @Test
     public void findBySalaIdEmpty() throws JSONException{
@@ -61,5 +63,25 @@ public class MensagemV1RestControlerITest {
     }
     private String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;
+    }
+
+    @Test
+    public void findByIdHttpStatusOK() throws JSONException{
+
+        ResponseEntity<String> response = restTemplate.exchange(
+            createURLWithPort(MENSAGEM_V1_MENSAGENS_ID + 2),
+            HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+        
+    @Test
+    public void findByIdHttpStatusNotFound() throws JSONException{
+
+        ResponseEntity<String> response = restTemplate.exchange(
+            createURLWithPort(MENSAGEM_V1_MENSAGENS_ID + 100),
+            HttpMethod.GET, new HttpEntity<>(null, headers), String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }

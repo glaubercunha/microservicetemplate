@@ -24,5 +24,15 @@ public class MensagemService {
 
         return repository.findBySalaId(salaId);
     }
- 
+
+    public Mensagem findById(Long id) {
+        try {
+            // TODO Trecho de código somente para teste do Redis, deverá ser removido
+             Thread.sleep(2000);
+        } catch (InterruptedException e) {
+           e.printStackTrace();
+        }
+
+        return repository.findById(id);
+    }
 }

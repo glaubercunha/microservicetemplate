@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +16,15 @@ import br.com.estudo.microservicetemplate.domain.repository.MensagemRepository;
 public class MensagemRepositoryImpl implements MensagemRepository{
     
     private final String FIND_BY_SALA_ID = 
-    "SELECT m.id, m.data, m.texto, m.sala_id, m.usuario_id, u.nome"
+          "SELECT m.id, m.data, m.texto, m.sala_id, m.usuario_id, u.nome"
         + " FROM mensagem m JOIN usuario u ON m.usuario_id = u.id"
         + " WHERE m.sala_id = ?"
         + " ORDER BY m.data";
+        
+    private final String FIND_BY_ID = 
+          "SELECT m.id, m.data, m.texto, m.sala_id, m.usuario_id, u.nome"
+        + " FROM mensagem m JOIN usuario u ON m.usuario_id = u.id"
+        + " WHERE m.id = ?";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -35,5 +41,18 @@ public class MensagemRepositoryImpl implements MensagemRepository{
             salaId);
         
         return mensagens;
+    }
+
+    @Override
+    public Mensagem findById(Long id) {
+        try{
+            Mensagem mensagem = jdbcTemplate.queryForObject(
+                FIND_BY_ID,
+                new MensagemMapper(),
+                id);  
+            return mensagem; 
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
